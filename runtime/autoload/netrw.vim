@@ -4777,7 +4777,7 @@ fun! s:NetrwBrowseChgDir(islocal,newdir,...)
 "    call Decho("go-up: unix: dirname<".dirname."> (go up one dir)",'~'.expand("<slnum>"))
    endif
    NetrwKeepj call s:SetRexDir(a:islocal,dirname)
-   norm m`
+   norm! m`
 
   elseif exists("w:netrw_liststyle") && w:netrw_liststyle == s:TREELIST && exists("w:netrw_treedict")
    " --------------------------------------
@@ -4855,7 +4855,7 @@ fun! s:NetrwBrowseChgDir(islocal,newdir,...)
    let dirname    = s:ComposePath(dirname,newdir)
 "   call Decho("go down one dir: dirname<".dirname."> newdir<".newdir.">",'~'.expand("<slnum>"))
    NetrwKeepj call s:SetRexDir(a:islocal,dirname)
-   norm m`
+   norm! m`
   endif
 
  " --------------------------------------
@@ -7863,7 +7863,7 @@ fun! netrw#Shrink()
    elseif winwidth(bufwinnr(t:netrw_lexbufnr)) >= 0
     exe "vert resize ".t:netrw_winwidth
 "    call Decho("vert resize ".t:netrw_winwidth,'~'.expand("<slnum>"))
-   else 
+   else
     call netrw#Lexplore(0,0)
    endif
 
@@ -11497,7 +11497,7 @@ fun! s:NetrwHumanReadable(sz)
 "  call Dfunc("s:NetrwHumanReadable(sz=".a:sz.") type=".type(a:sz)." style=".g:netrw_sizestyle )
 
   if g:netrw_sizestyle == 'h'
-   if a:sz >= 1000000000 
+   if a:sz >= 1000000000
     let sz = printf("%.1f",a:sz/1000000000.0)."g"
    elseif a:sz >= 10000000
     let sz = printf("%d",a:sz/1000000)."m"
@@ -11910,7 +11910,7 @@ endfun
 fun! s:ShellEscape(s, ...)
   if (has('win32') || has('win64')) && $SHELL == '' && &shellslash
     return printf('"%s"', substitute(a:s, '"', '""', 'g'))
-  endif 
+  endif
   let f = a:0 > 0 ? a:1 : 0
   return shellescape(a:s, f)
 endfun
